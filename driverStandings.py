@@ -48,7 +48,7 @@ for rnd, race in races['raceName'].items():
         results.append(temp)
     else:
         temp = ergast.get_race_results(season=2023, round=1).content[0]
-        temp['points'] = 0
+        temp['points'] = float('nan')
         temp['round'] = rnd + 1
         temp['race'] = race.removesuffix(' Grand Prix')
         temp = temp[['round', 'race', 'driverCode', 'points']]
@@ -69,6 +69,7 @@ results.drop(columns='total_points', inplace=True)
 # Use race name, instead of round no., as column names
 results.columns = races
 
+pltTitle = "2023 Driver Standings"
 fig = px.imshow(
     results,
     text_auto=True,
@@ -88,13 +89,22 @@ fig.update_yaxes(tickmode='linear')  # Show all ticks, i.e. driver names
 fig.update_yaxes(showgrid=True, gridwidth=1, gridcolor='LightGrey',
                  showline=False,
                  tickson='boundaries')              # Show horizontal grid only
-fig.update_xaxes(showgrid=False, showline=False)    # And remove vertical grid
-fig.update_layout(plot_bgcolor='rgba(0,0,0,0)')     # White background
+fig.update_xaxes(showgrid=True, gridwidth=1, gridcolor='LightGrey',
+                 showline=False, tickson='boundaries')    # And remove vertical grid
+#fig.update_layout(plot_bgcolor='rgba(0,0,0,0)')     # White background
 fig.update_layout(coloraxis_showscale=False)        # Remove legend
 fig.update_layout(xaxis=dict(side='top'))           # x-axis on top
-fig.update_layout(margin=dict(l=0, r=0, b=0, t=0))  # Remove border margins
+fig.update_layout(
+    title={
+        'text': pltTitle,
+        'font': dict(size=50),
+        'y':1,
+        'x':0.5,
+        'xanchor': 'center',
+        'yanchor': 'top'})
+#fig.update_layout(title_automargin=True)
+fig.update_layout(margin=dict(l=0, r=0, b=0, t=175))  # Remove border margins
 #show(fig)
 
-title = "2022 Driver Standings"
-fig.write_image(save + title + ".pdf")
-fig.write_image(save + title + ".png")
+fig.write_image(save + pltTitle + ".pdf")
+fig.write_image(save + pltTitle + ".png")

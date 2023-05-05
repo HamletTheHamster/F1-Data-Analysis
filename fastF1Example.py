@@ -16,7 +16,7 @@ if not os.path.exists(save):
 
 fastf1.plotting.setup_mpl()
 
-session = fastf1.get_session(2019, 'Monza', 'Q')
+session = fastf1.get_session(2023, 'Baku', 'Q')
 
 session.load()
 fast_leclerc = session.laps.pick_driver('LEC').pick_fastest()
@@ -26,10 +26,11 @@ vCar = lec_car_data['Speed']
 
 # The rest is just plotting
 fig, ax = plt.subplots()
-ax.plot(t, vCar, label='Fast')
-ax.set_xlabel('Time')
-ax.set_ylabel('Speed [Km/h]')
-ax.set_title('Leclerc is')
+ax.plot(t, vCar, label='LEC')
+ax.set_xlabel('Time (s)')
+ax.set_ylabel('Speed (Km/h)')
+title = "Baku 2023 Quali: Fastest Lap"
+ax.set_title(title)
 ax.legend()
-plt.savefig(save + "FastF1 Example Plot.pdf", format="pdf")
-plt.savefig(save + "FastF1 Example Plot.png", format="png")
+plt.savefig(save + title + ".pdf", format="pdf")
+plt.savefig(save + title + ".png", format="png")

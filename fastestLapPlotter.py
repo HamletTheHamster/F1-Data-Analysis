@@ -16,20 +16,26 @@ if not os.path.exists(save):
 
 fastf1.plotting.setup_mpl()
 
-session = fastf1.get_session(2023, 'Baku', 'Q')
+session = fastf1.get_session(2022, 'Miami', 'Q')
 
 session.load()
-fast_leclerc = session.laps.pick_driver('LEC').pick_fastest()
-lec_car_data = fast_leclerc.get_car_data()
-t = lec_car_data['Time']
-vCar = lec_car_data['Speed']
+ver = session.laps.pick_driver('VER').pick_fastest()
+verCarData = ver.get_car_data()
+verT = verCarData['Time']
+verSpeed = verCarData['Speed']
+
+per = session.laps.pick_driver('PER').pick_fastest()
+perCarData = per.get_car_data()
+perT = perCarData['Time']
+perSpeed = perCarData['Speed']
 
 # The rest is just plotting
 fig, ax = plt.subplots()
-ax.plot(t, vCar, label='LEC')
+ax.plot(verT, verSpeed, label='VER')
+ax.plot(perT, perSpeed, label='PER')
 ax.set_xlabel('Time (s)')
 ax.set_ylabel('Speed (Km/h)')
-title = "Baku 2023 Quali: Fastest Lap"
+title = "Miami 2022 Quali: Fastest Lap"
 ax.set_title(title)
 ax.legend()
 plt.savefig(save + title + ".pdf", format="pdf")

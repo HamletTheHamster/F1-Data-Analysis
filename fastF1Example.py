@@ -1,6 +1,18 @@
 from matplotlib import pyplot as plt
 import fastf1
 import fastf1.plotting
+import datetime
+import os
+import sys
+
+timestamp = datetime.datetime.now()
+
+if len(sys.argv) > 0:
+    note = sys.argv[1]
+
+save = "Plots/" + timestamp.strftime("%Y-%b-%d") + "/" + timestamp.strftime("%X") + ": " + note + "/"
+if not os.path.exists(save):
+  os.makedirs(save)
 
 fastf1.plotting.setup_mpl()
 
@@ -19,4 +31,5 @@ ax.set_xlabel('Time')
 ax.set_ylabel('Speed [Km/h]')
 ax.set_title('Leclerc is')
 ax.legend()
-plt.show()
+plt.savefig(save + "FastF1 Example Plot.pdf", format="pdf")
+plt.savefig(save + "FastF1 Example Plot.png", format="png")

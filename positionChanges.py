@@ -15,7 +15,7 @@ if not os.path.exists(save):
 
 fastf1.plotting.setup_mpl(misc_mpl_mods=False)
 
-session = fastf1.get_session(2023, 4, 'R')
+session = fastf1.get_session(2023, 5, 'R')
 session.load(telemetry=False, weather=False)
 
 fig, ax = plt.subplots(figsize=(8.0, 4.9))
@@ -29,8 +29,7 @@ for drv in session.drivers:
     ax.plot(drv_laps['LapNumber'], drv_laps['Position'],
             label=abb, color=color)
 
-title = "Baku 2023 Position Changes During Race"
-plt.title(title)
+plt.title(f"{session.event['EventName']} {session.event.year} Position Changes During {session.name}")
 ax.set_ylim([20.5, 0.5])
 #ax.set_yticks([1, 5, 10, 15, 20])
 ax.set_xlabel('Lap')
@@ -40,5 +39,5 @@ ax.legend(bbox_to_anchor=(1.0, 1.02))
 plt.tight_layout()
 
 
-plt.savefig(save + title + ".pdf", format="pdf")
-plt.savefig(save + title + ".png", format="png")
+plt.savefig(f"{save}{session.event['EventName']} {session.event.year} Position Changes During {session.name}.pdf", format="pdf")
+plt.savefig(f"{save}{session.event['EventName']} {session.event.year} Position Changes During {session.name}.png", format="png")

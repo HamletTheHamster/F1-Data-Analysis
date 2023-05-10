@@ -16,27 +16,29 @@ if not os.path.exists(save):
 
 fastf1.plotting.setup_mpl()
 
-session = fastf1.get_session(2022, 'Miami', 'Q')
+session = fastf1.get_session(2023, 'Miami', 'Q')
 
 session.load()
-ver = session.laps.pick_driver('VER').pick_fastest()
-verCarData = ver.get_car_data()
-verT = verCarData['Time']
-verSpeed = verCarData['Speed']
+driver1 = 'LEC'
+d1 = session.laps.pick_driver(driver1).pick_fastest()
+#d1 = session.laps.pick_driver(driver1).pick_lap(19)
+d1CarData = d1.get_car_data()
+d1T = d1CarData['Time']
+d1Speed = d1CarData['Speed']
 
-per = session.laps.pick_driver('PER').pick_fastest()
-perCarData = per.get_car_data()
-perT = perCarData['Time']
-perSpeed = perCarData['Speed']
+driver2 = 'DEV'
+d2 = session.laps.pick_driver(driver2).pick_fastest()
+d2CarData = d2.get_car_data()
+d2T = d2CarData['Time']
+d2Speed = d2CarData['Speed']
 
 # The rest is just plotting
 fig, ax = plt.subplots()
-ax.plot(verT, verSpeed, label='VER')
-ax.plot(perT, perSpeed, label='PER')
+ax.plot(d1T, d1Speed, label=driver1)
+#ax.plot(d2T, d2Speed, label=driver2)
 ax.set_xlabel('Time (s)')
 ax.set_ylabel('Speed (Km/h)')
-title = "Miami 2022 Quali: Fastest Lap"
-ax.set_title(title)
+ax.set_title(f"{session.event['EventName']} {session.event.year} {session.name}: Fastest Lap")
 ax.legend()
-plt.savefig(save + title + ".pdf", format="pdf")
-plt.savefig(save + title + ".png", format="png")
+plt.savefig(f"{save}{session.event['EventName']} {session.event.year} {session.name}: Fastest Lap.pdf", format="pdf")
+plt.savefig(f"{save}{session.event['EventName']} {session.event.year} {session.name}: Fastest Lap.png", format="png")

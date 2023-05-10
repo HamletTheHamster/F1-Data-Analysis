@@ -27,7 +27,7 @@ results = []*5
 # For each race in the season
 for rnd, race in races['raceName'].items():
 
-    if rnd < 4:
+    if rnd < 5:
         # Get results. Note that we use the round no. + 1, because the round no.
         # starts from one (1) instead of zero (0)
         temp = ergast.get_race_results(season=2023, round=rnd + 1)

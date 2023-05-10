@@ -17,9 +17,9 @@ if not os.path.exists(save):
   os.makedirs(save)
 
 year = 2023
-wknd = 4
-ses = 'Q'
-driver = 'LEC'
+wknd = 5
+ses = 'R'
+driver = 'VER'
 colormap = mpl.cm.plasma
 
 session = ff1.get_session(year, wknd, ses)
@@ -37,7 +37,7 @@ segments = np.concatenate([points[:-1], points[1:]], axis=1)
 
 # We create a plot with title and adjust some setting to make it look good.
 fig, ax = plt.subplots(sharex=True, sharey=True, figsize=(12, 6.75))
-fig.suptitle(f'Baku {year}: {driver} Q Fastest Lap - Speed on Track', size=24, y=0.97)
+fig.suptitle(f"{session.event['EventName']} {session.event.year}: {driver} Fastest Lap in {session.name}", size=24, y=0.97)
 
 # Adjust margins and turn of axis
 plt.subplots_adjust(left=0.1, right=0.9, top=0.9, bottom=0.12)
@@ -66,7 +66,6 @@ legend = mpl.colorbar.ColorbarBase(cbaxes, norm=normlegend, cmap=colormap, orien
 
 
 # Save the plot
-#title = weekend.name + " " + year + " - " + driver + " - " + Speed
 title = "Speed on Track LEC Q Fastest Lap"
-plt.savefig(save + title + ".pdf", format="pdf")
-plt.savefig(save + title + ".png", format="png")
+plt.savefig(f"{save}{session.event['EventName']} {session.event.year}: {driver} Fastest Lap in {session.name} .pdf", format="pdf")
+plt.savefig(f"{save}{session.event['EventName']} {session.event.year}: {driver} Fastest Lap in {session.name} .png", format="png")

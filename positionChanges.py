@@ -15,7 +15,7 @@ if not os.path.exists(save):
 
 fastf1.plotting.setup_mpl(misc_mpl_mods=False)
 
-session = fastf1.get_session(2023, 5, 'R')
+session = fastf1.get_session(2023, 3, 'R')
 session.load(telemetry=False, weather=False)
 
 fig, ax = plt.subplots(figsize=(8.0, 4.9))

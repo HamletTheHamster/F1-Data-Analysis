@@ -31,7 +31,7 @@ for drv in session.drivers:
 
 plt.title(f"{session.event['EventName']} {session.event.year} Position Changes During {session.name}")
 ax.set_ylim([20.5, 0.5])
-#ax.set_yticks([1, 5, 10, 15, 20])
+ax.set_yticks([1, 5, 10, 15, 20])
 ax.set_xlabel('Lap')
 ax.set_ylabel('Position')
 

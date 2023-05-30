@@ -17,7 +17,7 @@ if not os.path.exists(save):
   os.makedirs(save)
 
 year = 2023
-wknd = 5
+wknd = 7
 ses = 'R'
 driver = 'VER'
 colormap = mpl.cm.plasma
@@ -67,5 +67,5 @@ legend = mpl.colorbar.ColorbarBase(cbaxes, norm=normlegend, cmap=colormap, orien
 
 # Save the plot
 title = "Speed on Track LEC Q Fastest Lap"
-plt.savefig(f"{save}{session.event['EventName']} {session.event.year}: {driver} Fastest Lap in {session.name} Track Vis.pdf", format="pdf")
-plt.savefig(f"{save}{session.event['EventName']} {session.event.year}: {driver} Fastest Lap in {session.name} Track Vis.png", format="png")
+#plt.savefig(f"{save}{session.event['EventName']} {session.event.year}: {driver} Fastest Lap in {session.name} Track Vis.pdf", format="pdf")
+plt.savefig(f"{save}{session.event['EventName']} {session.event.year}: {driver} Fastest Lap in {session.name} Track Vis.png", format="png", dpi=600, transparent=True)

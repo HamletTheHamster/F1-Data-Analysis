@@ -18,7 +18,7 @@ if not os.path.exists(save):
   os.makedirs(save)
 
 
-session = fastf1.get_session(2023, 'Baku', 'Q')
+session = fastf1.get_session(2023, 'Monaco', 'Q')
 session.load()
 
 lap = session.laps.pick_fastest()
@@ -50,5 +50,5 @@ cbar = plt.colorbar(mappable=lc_comp, label="Gear", boundaries=np.arange(1, 10))
 cbar.set_ticks(np.arange(1.5, 9.5))
 cbar.set_ticklabels(np.arange(1, 9))
 
-plt.savefig(save + title + ".pdf", format="pdf")
-plt.savefig(save + title + ".png", format="png")
+#plt.savefig(save + title + ".pdf", format="pdf")
+plt.savefig(save + title + ".png", format="png", dpi=600, transparent=True)

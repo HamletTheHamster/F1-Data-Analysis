@@ -15,10 +15,11 @@ if not os.path.exists(save):
 
 fastf1.plotting.setup_mpl(misc_mpl_mods=False)
 
-session = fastf1.get_session(2023, 3, 'R')
+session = fastf1.get_session(2023, 'Monaco', 'R')
 session.load(telemetry=False, weather=False)
 
 fig, ax = plt.subplots(figsize=(8.0, 4.9))
+fig.patch.set_alpha(0)
 
 for drv in session.drivers:
     drv_laps = session.laps.pick_driver(drv)
@@ -35,9 +36,9 @@ ax.set_yticks([1, 5, 10, 15, 20])
 ax.set_xlabel('Lap')
 ax.set_ylabel('Position')
 
-ax.legend(bbox_to_anchor=(1.0, 1.02))
+ax.legend(bbox_to_anchor=(1.0, 1.02), framealpha=0)
 plt.tight_layout()
 
 
-plt.savefig(f"{save}{session.event['EventName']} {session.event.year} Position Changes During {session.name}.pdf", format="pdf")
-plt.savefig(f"{save}{session.event['EventName']} {session.event.year} Position Changes During {session.name}.png", format="png")
+#plt.savefig(f"{save}{session.event['EventName']} {session.event.year} Position Changes During {session.name}.pdf", format="pdf")
+plt.savefig(f"{save}{session.event['EventName']} {session.event.year} Position Changes During {session.name}.png", format="png", dpi=600, transparent=True)

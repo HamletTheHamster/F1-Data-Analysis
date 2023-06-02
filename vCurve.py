@@ -19,15 +19,16 @@ fastf1.plotting.setup_mpl()
 session = fastf1.get_session(2023, 'Monaco', 'R')
 
 session.load()
-driver1 = 'NOR'
+driver1 = 'DEV'
 d1 = session.laps.pick_driver(driver1).pick_fastest()
-#d1 = session.laps.pick_driver(driver1).pick_lap(19)
+d1 = session.laps.pick_driver(driver1).pick_lap(77)
 d1CarData = d1.get_car_data()
 d1T = d1CarData['Time']
 d1Speed = d1CarData['Speed']
 
-driver2 = 'PIA'
+driver2 = 'TSU'
 d2 = session.laps.pick_driver(driver2).pick_fastest()
+d1 = session.laps.pick_driver(driver1).pick_lap(77)
 d2CarData = d2.get_car_data()
 d2T = d2CarData['Time']
 d2Speed = d2CarData['Speed']
@@ -39,7 +40,7 @@ ax.plot(d1T, d1Speed, label=driver1)
 ax.plot(d2T, d2Speed, label=driver2)
 ax.set_xlabel('Time (s)')
 ax.set_ylabel('Speed (Km/h)')
-ax.set_title(f"{session.event['EventName']} {session.event.year} {session.name}: Fastest Lap")
+ax.set_title(f"{session.event['EventName']} {session.event.year} {session.name}: TSU brake issues?")
 ax.legend()
 #plt.savefig(f"{save}{session.event['EventName']} {session.event.year} {session.name}: Fastest Lap {driver1}-{driver2}.pdf", format="pdf")
 plt.savefig(f"{save}{session.event['EventName']} {session.event.year} {session.name}: Fastest Lap {driver1}-{driver2}.png", format="png", dpi=600, transparent=True)

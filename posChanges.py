@@ -9,7 +9,7 @@ timestamp = datetime.datetime.now()
 if len(sys.argv) > 0:
     note = sys.argv[1]
 
-save = "Plots/" + timestamp.strftime("%Y-%b-%d") + "/" + timestamp.strftime("%X") + ": " + note + "/"
+save = f"Plots/{timestamp.strftime('%Y-%b-%d')}/{timestamp.strftime('%X')}: {note}/"
 if not os.path.exists(save):
   os.makedirs(save)
 
@@ -38,7 +38,6 @@ ax.set_ylabel('Position')
 
 ax.legend(bbox_to_anchor=(1.0, 1.02), framealpha=0)
 plt.tight_layout()
-
 
 #plt.savefig(f"{save}{session.event['EventName']} {session.event.year} Position Changes During {session.name}.pdf", format="pdf")
 plt.savefig(f"{save}{session.event['EventName']} {session.event.year} Position Changes During {session.name}.png", format="png", dpi=600, transparent=True)

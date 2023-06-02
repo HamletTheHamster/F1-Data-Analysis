@@ -22,12 +22,12 @@ if not os.path.exists(save):
 
 ergast = Ergast()
 races = ergast.get_race_schedule(2023)
-results = []*5
+results = []
 
 # For each race in the season
 for rnd, race in races['raceName'].items():
 
-    if rnd < 5:
+    if rnd < 7 and rnd != 5:
         # Get results. Note that we use the round no. + 1, because the round no.
         # starts from one (1) instead of zero (0)
         temp = ergast.get_race_results(season=2023, round=rnd + 1)
@@ -106,5 +106,5 @@ fig.update_layout(
 fig.update_layout(margin=dict(l=0, r=0, b=0, t=175))  # Remove border margins
 #show(fig)
 
-fig.write_image(save + pltTitle + ".pdf")
+#fig.write_image(save + pltTitle + ".pdf")
 fig.write_image(save + pltTitle + ".png")
